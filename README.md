@@ -1,4 +1,4 @@
-# angular2-courses / TypeScript
+# angular - courses / TypeScript
 
 This folder contains all TypeScript stuff
 
