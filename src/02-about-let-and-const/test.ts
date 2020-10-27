@@ -15,8 +15,8 @@ describe('about let and const', () => {
       let myLet: number = 4;
     }
 
-    expect(myVar).to.equal( _ );
-    expect(myLet).to.equal( _ );
+    expect(myVar).to.equal(3);
+    expect(myLet).to.equal(2);
   });
 
   it('2-should be only available in a for block scope', () => {
@@ -27,8 +27,8 @@ describe('about let and const', () => {
         //do something
       }
     }
-    expect(forVar).to.equal( _ );
-    expect(forLet).to.equal( _ );
+    expect(forVar).to.equal(10);
+    expect(forLet).to.equal(0);
   });
 
   it('3-should solves some async issues', (done) => {
@@ -43,8 +43,8 @@ describe('about let and const', () => {
     }
 
     setTimeout(() => {
-      expect(varStack).to.equal( _ );
-      expect(letStack).to.equal( _ );
+      expect(varStack).to.equal([3,3,3]);
+      expect(letStack).to.equal(undefined);
       done();
     });
   });
@@ -62,7 +62,7 @@ describe('about let and const', () => {
       error = true;
     }
 
-    expect(error).to.be.null; // _ (change null by ?)
-    expect(myConstObject.key).to.equal( _ );
+    expect(error).to.be.false; // _ (change null by ?)
+    expect(myConstObject.key).to.equal('value');
   });
 });
