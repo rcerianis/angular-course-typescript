@@ -16,7 +16,7 @@ describe('about destructuring arrays', () => {
   it('3-should count leading commas', () => {
     const all = ['ax', 'why', 'zet'];
     const [,z] = all;
-    expect(z).to.equal('zet'); // _
+    expect(z).to.equal(['zet']); // _
   });
 
   it('4-should extract from nested arrays', () => {
@@ -56,7 +56,7 @@ describe('about destructuring objects', () => {
   });
 
   it('4-should mix array and object', () => {
-    const [, {lang}] = [null, [{ env: 'browser', lang: 'ES6' }]]; // _
+    const [, [lang]] = [null, [{ env: 'browser', lang: 'ES6' }]]; // _
     expect(lang).to.equal('ES6');
   });
 
