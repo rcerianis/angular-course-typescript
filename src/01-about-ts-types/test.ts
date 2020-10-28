@@ -29,7 +29,7 @@ describe('about ts types', () => {
   });
 
   it('4-should type enums', () => {
-    enum myAwesomeEnum {ACTIVE = 0, OTHER, INACTIVE = '2'};
+    enum myAwesomeEnum {ACTIVE = 0, OTHER, 'INACTIVE'};
     //const myAwesomeEnum: AwesomeEnum; // _
     expect(myAwesomeEnum.ACTIVE).to.equal(0);
     expect(myAwesomeEnum[2]).to.equal('INACTIVE');
@@ -43,14 +43,14 @@ describe('about ts types', () => {
   });
 
   it('6-should work in functions arguments too', () => {
-    function sayHello(name) {
+    function sayHello(name: string) {
       return 'Hello '.concat(name);
     }
     expect(sayHello('TypeScript')).to.equal('Hello TypeScript'); // replace the _
   });
 
   it('7-should infer the type', () => {
-    function add(a, b) {
+    function add(a: number, b: string) {
       return a + b;
     }
     expect(add(17, '25')).to.equal('1725'); // replace the _

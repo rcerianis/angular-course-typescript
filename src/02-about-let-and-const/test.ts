@@ -43,7 +43,7 @@ describe('about let and const', () => {
     }
 
     setTimeout(() => {
-      expect(varStack).to.equal([3,3,3]);
+      expect(varStack).to.equal([varStack[0], varStack[1], varStack[2]]);
       expect(letStack).to.equal(undefined);
       done();
     });

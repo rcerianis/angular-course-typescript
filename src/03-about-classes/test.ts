@@ -9,14 +9,30 @@ describe('about classes', () => {
   }
 
   it('1-your first class', () => {
-    class SuperHero { } // _
+    class SuperHero {
+      private firstname: string;
+      lastname: string;
+      constructor(firstname: string, lastname: string) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+      }
+
+      talk(): string {
+        return `My favourite saying is : Hi my name is ${this.firstname} ${this.lastname}`;
+      }
+    } // _
 
     var hero = new SuperHero('Bruce', 'Wayne');
     expect(hero.talk()).to.equal('My favourite saying is : Hi my name is Bruce Wayne');
   });
 
   it('2-you can use getter and setters', () => {
-    class Person { } // _
+    class Person {
+      fullName: string;
+      constructor(firstname: string, lastname: string) {
+        this.fullName = `${firstname} ${lastname}`;
+      }
+    } // _
 
     var person = new Person('John', 'Doe');
     expect(person.fullName).to.equal('John Doe');
@@ -30,7 +46,15 @@ describe('about classes', () => {
       sayHi(): string;
     }
 
-    class Developer { } // _
+    class Developer implements IDeveloper {
+      favouriteLanguage: string;
+      constructor(sFavouriteLanguage: string) {
+        this.favouriteLanguage = sFavouriteLanguage;
+      }
+      sayHi(): string {
+        return `Hello my favourite language is ${this.favouriteLanguage}`;
+      }
+     } // _
 
     var developer: IDeveloper = new Developer('TypeScript');
     expect(developer.sayHi()).to.equal('Hello my favourite language is TypeScript');
@@ -49,7 +73,16 @@ describe('about classes', () => {
       }
     }
 
-    class Sidekick { } // _
+    class Sidekick extends SuperHero {
+      private superHero: SuperHero;
+      constructor(name: string, ability: string, superHero: SuperHero) {
+        super(name, ability);
+        this.superHero = superHero;
+      }
+      public talk(): string {
+        return `I fight against evil with ${this.ability} and my master is ${this.superHero.name}`;
+      }
+    } // _
 
     var batman = new SuperHero('Batman', 'Martial arts');
     var robin = new Sidekick('Robin', 'Stick', batman);
@@ -70,11 +103,14 @@ describe('about classes', () => {
     }
 
     var developer = new Developer('JavaScript');
-    expect(developer.sayHi.call( _ ))
+    expect(developer.sayHi.call( new Developer('TypeScript') ))
       .to.equal('Hello my favourite language is TypeScript');
   });
 
   it('6-mix it', () => {
+    interface IDev {
+      talk(): string;
+    }
     class BackDeveloper {
       public static languages = ['CSharp'];
       public writeCSharp() {
@@ -92,7 +128,24 @@ describe('about classes', () => {
       }
     }
 
-    class FullStackDeveloper { } // _
+    class FullStackDeveloper { 
+      public static languages = BackDeveloper.languages.concat(FrontDeveloper.languages)
+      talk() {
+        return `Hello I'm a FullStackDeveloper and I know ${FullStackDeveloper.languages.join(' and ')}`;
+      }
+      talk2() {
+        let currentLanguage = [];
+        for (let language of FullStackDeveloper.languages) {
+          if (this['write' + language] && this['write' + language]()) {
+            currentLanguage.push(language);
+          }
+        }
+        if (currentLanguage.length === 0) {
+          currentLanguage = FullStackDeveloper.languages;
+        }
+        return `Hello I'm a FullStackDeveloper and I know ${FullStackDeveloper.languages.join(' and ')}`;
+      }
+    } // _
 
     var developer = new FullStackDeveloper();
     expect(developer.talk())

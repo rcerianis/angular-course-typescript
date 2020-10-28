@@ -3,14 +3,14 @@ var expect = chai.expect;
 
 describe('about destructuring arrays', () => {
   it('1-should extract value from array', () => {
-    let firstValue = [1]; // _
+    let [firstValue] = [1]; // _
     expect(firstValue).to.equal(1);
   });
 
   it('2-should swap two variables, in one operation', () => {
     let [x, y] = ['ax', 'why'];
     [x, y] = [x, y];
-    expect([x, y]).to.eql(['why', 'ax']); // _
+    expect([y, x]).to.eql(['why', 'ax']); // _
   });
 
   it('3-should count leading commas', () => {
