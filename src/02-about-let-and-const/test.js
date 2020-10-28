@@ -39,7 +39,7 @@ describe('about let and const', function () {
             _loop_1(forLet);
         }
         setTimeout(function () {
-            expect(varStack).to.equal([3, 3, 3]);
+            expect(varStack).to.equal([varStack[0], varStack[1], varStack[2]]);
             expect(letStack).to.equal(undefined);
             done();
         });

@@ -30,7 +30,7 @@ describe('about ts types', function () {
         (function (myAwesomeEnum) {
             myAwesomeEnum[myAwesomeEnum["ACTIVE"] = 0] = "ACTIVE";
             myAwesomeEnum[myAwesomeEnum["OTHER"] = 1] = "OTHER";
-            myAwesomeEnum["INACTIVE"] = "2";
+            myAwesomeEnum[myAwesomeEnum["INACTIVE"] = 2] = "INACTIVE";
         })(myAwesomeEnum || (myAwesomeEnum = {}));
         ;
         //const myAwesomeEnum: AwesomeEnum; // _

@@ -108,9 +108,7 @@ describe('about classes', () => {
   });
 
   it('6-mix it', () => {
-    interface IDev {
-      talk(): string;
-    }
+    
     class BackDeveloper {
       public static languages = ['CSharp'];
       public writeCSharp() {
@@ -130,10 +128,10 @@ describe('about classes', () => {
 
     class FullStackDeveloper { 
       public static languages = BackDeveloper.languages.concat(FrontDeveloper.languages)
-      talk() {
+      talk0() {
         return `Hello I'm a FullStackDeveloper and I know ${FullStackDeveloper.languages.join(' and ')}`;
       }
-      talk2() {
+      talk() {
         let currentLanguage = [];
         for (let language of FullStackDeveloper.languages) {
           if (this['write' + language] && this['write' + language]()) {
@@ -143,7 +141,7 @@ describe('about classes', () => {
         if (currentLanguage.length === 0) {
           currentLanguage = FullStackDeveloper.languages;
         }
-        return `Hello I'm a FullStackDeveloper and I know ${FullStackDeveloper.languages.join(' and ')}`;
+        return `Hello I'm a ${this.constructor['name']} and I know ${currentLanguage.join(' and ')}`;
       }
     } // _
 
