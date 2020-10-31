@@ -48,8 +48,8 @@ describe('about destructuring objects', function () {
     it('2-should find variables properties', function () {
         var magic = { first: 23, second: 42 };
         //    const {magic: second} = { magic }; // _
-        var second = { magic: magic }.magic; // _
-        expect(second).to.equal(42); //K.O.
+        var second = magic.second; // _
+        expect(second).to.equal(42); //O.K.
     });
     it('3-should mix object and array', function () {
         //    const {z: [x]} = { z: [23, 42] };
@@ -59,8 +59,8 @@ describe('about destructuring objects', function () {
     });
     it('4-should mix array and object', function () {
         //    const [, [lang]] = [null, [{ env: 'browser', lang: 'ES6' }]]; // _
-        var _a = [null, [{ env: 'browser', lang: 'ES6' }]], lang = _a[1][0]; // _
-        expect(lang).to.equal('ES6'); //K.O.
+        var _a = [null, [{ env: 'browser', lang: 'ES6' }]], lang = _a[1][0].lang; // _
+        expect(lang).to.equal('ES6'); //O.K.
     });
     it('5-should missing refs become undefined ?', function () {
         //    const {z} = { x: 1, z: 2 }; // _

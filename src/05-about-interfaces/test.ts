@@ -25,23 +25,32 @@ describe('about interfaces', () => {
 
     // _
 
-    var person: _ = {
+    //var person: _ = {
+    var person: IAnimal = {
       gender: 'male',
       firstName: 'John'
     };
-    expect(person.gender).to.equal( _ );
-    expect(person.firstName).to.equal( _ );
+    //expect(person.gender).to.equal( _ );
+    expect(person.gender).to.equal( 'male' );//O.K.
+    //expect(person.firstName).to.equal( _ );
+    expect(person.firstName).to.equal( 'John' );//O.K.
   });
 
   it('4-can have optional properties', () => {
     // _
+    interface IPerson {
+      lastName?: string;
+    }
 
-    var person: _ = {
+    //var person: _ = {
+    var person: IPerson = {
       firstName: 'John'
     };
 
-    expect(person.firstName).to.equal( _ );
-    expect(person.lastName).to.equal( _ );
+    //expect(person.firstName).to.equal( _ );
+    expect(person.firstName).to.equal( 'John' );//O.K.
+    //expect(person.lastName).to.equal( _ );
+    expect(person.lastName).to.equal( undefined );//O.K.
   });
 
   it('5-can have readonly properties', () => {
@@ -109,7 +118,9 @@ describe('about interfaces', () => {
       (name: string): string;
     }
 
-    var greet; // _
+    const greet: IGreeter = (name: string) => {
+      return `Hello ${name}`
+    }; // _ O.K.
 
     expect(greet('John')).to.equal('Hello John');
   });
@@ -121,8 +132,11 @@ describe('about interfaces', () => {
       foo?: string;
     }
 
-    var greet; // _
+    const greet: IGreeter = (firstName: string, lastName?: string) => {
+      return `Hello ${firstName}${lastName ? ' ' + lastName : ''}`
+    }; // _ O.K.
     // _
+    greet.foo = 'bar';// O.K.
 
     expect(greet('John')).to.equal('Hello John');
     expect(greet('John', 'Doe')).to.equal('Hello John Doe');
@@ -138,7 +152,11 @@ describe('about interfaces', () => {
       new (firstName: string): IPerson;
     }
 
-    var Person; // _
+    class Person implements IPersonConstructor {
+      constructor(firstName: string): IPerson {
+        this.firstName = firstName;
+      }
+    }; // _ O.K.
 
     expect(new Person('John').firstName).to.equal('John');
   });
