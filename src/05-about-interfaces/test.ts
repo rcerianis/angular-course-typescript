@@ -3,19 +3,25 @@ var expect = chai.expect;
 
 describe('about interfaces', () => {
   it('1-describes an object', () => {
-    var person : _ = {
+    //var person : _ = {
+    var person : any = {
       firstName: 'John'
     };
-    expect(person.firstName).to.equal( _ );
+    expect(person.firstName).to.equal( 'John' );//O.K.
   });
 
   it('2-should be possible to use it as a type', () => {
     // _
+    interface IPerson {
+      firstName: string;
+    }
 
-    var person: _ = {
+    //var person: _ = {
+    var person: IPerson = {
       firstName: 'John'
     };
-    expect(person.firstName).to.equal( _ );
+    //expect(person.firstName).to.equal( _ );
+    expect(person.firstName).to.equal( 'John' );//O.K.
   });
 
   it('3-can be extended', () => {
@@ -55,21 +61,31 @@ describe('about interfaces', () => {
 
   it('5-can have readonly properties', () => {
     // _
+    interface IPerson {
+      readonly firstName: string;
+    }
 
     var error: boolean = false;
-    var person: _ = {
+    //var person: _ = {
+    const person: IPerson = {
       firstName: 'John'
     };
+person.firstName='toto';
+console.log('toto2?');
 
     try {
+      console.log('Avant');
       person.firstName = 'Jane';
+      console.log('Après');
     }
     catch (e) {
       error = true;
     }
 
-    expect(error).to.be._;
-    expect(person.firstName).to.equal( _ );
+    //expect(error).to.be._;
+    expect(error).to.be.true;
+    //expect(person.firstName).to.equal( _ );
+    expect(person.firstName).to.equal( 'John' );
   });
 
   it('6-can describe maps', () => {

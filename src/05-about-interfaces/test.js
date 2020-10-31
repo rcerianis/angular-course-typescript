@@ -4,17 +4,19 @@ var chai = require("chai");
 var expect = chai.expect;
 describe('about interfaces', function () {
     it('1-describes an object', function () {
+        //var person : _ = {
         var person = {
             firstName: 'John'
         };
-        expect(person.firstName).to.equal(_);
+        expect(person.firstName).to.equal('John'); //O.K.
     });
     it('2-should be possible to use it as a type', function () {
-        // _
+        //var person: _ = {
         var person = {
             firstName: 'John'
         };
-        expect(person.firstName).to.equal(_);
+        //expect(person.firstName).to.equal( _ );
+        expect(person.firstName).to.equal('John'); //O.K.
     });
     it('3-can be extended', function () {
         // _
@@ -39,19 +41,25 @@ describe('about interfaces', function () {
         expect(person.lastName).to.equal(undefined); //O.K.
     });
     it('5-can have readonly properties', function () {
-        // _
         var error = false;
+        //var person: _ = {
         var person = {
             firstName: 'John'
         };
+        person.firstName = 'toto';
+        console.log('toto2?');
         try {
+            console.log('Avant');
             person.firstName = 'Jane';
+            console.log('Après');
         }
         catch (e) {
             error = true;
         }
-        expect(error).to.be._;
-        expect(person.firstName).to.equal(_);
+        //expect(error).to.be._;
+        expect(error).to.be["true"];
+        //expect(person.firstName).to.equal( _ );
+        expect(person.firstName).to.equal('John');
     });
     it('6-can describe maps', function () {
         // _
